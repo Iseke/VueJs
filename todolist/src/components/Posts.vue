@@ -12,7 +12,7 @@
             <tr v-for='(post,indx) in postLists'>
                 <td>{{indx+1}}</td>
                 <td>{{post.title}}</td>
-                <td>{{post.description}}</td>
+                <td>{{parsing(post.description)}}</td>
                 <td>{{post.author}}</td>
                 <td>{{post.creationDate}}</td>
                 <td><button @click="postDetail(indx)" class="moreBtn">more...</button></td>
@@ -47,6 +47,14 @@
          } ,
          postDetail(index){
             this.$router.push('/postDetail/'+index)
+         },
+         parsing(inx){
+           if(inx.toString().length>10){
+               return inx.toString().substr(0,10)+'...';
+           }
+           else {
+               return inx.toString();
+           }
          }
 
        }
@@ -68,7 +76,7 @@ td{
   transition: .3s linear;
 }
 .createBtn{
-    
+
     color: blue;
     padding: 15px 32px;
     text-align: center;
